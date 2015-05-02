@@ -1,0 +1,124 @@
+iniciar-programa
+    define-nueva-instruccion gira-derecha como inicio
+        gira-izquierda;
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+
+    define-nueva-instruccion gira-u como inicio
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+
+
+    define-nueva-instruccion mavanza(n) como inicio
+        repetir n veces avanza;
+    fin;
+
+    define-nueva-instruccion izqav como inicio
+        gira-izquierda;
+        avanza;
+    fin;
+
+    define-nueva-instruccion avizq como inicio
+        avanza;
+        gira-izquierda;
+    fin;
+
+
+    define-nueva-instruccion valida como inicio
+        izqav;
+        si junto-a-zumbador entonces inicio
+            gira-u;
+            avizq;
+        fin sino inicio
+            izqav;
+            si junto-a-zumbador entonces inicio
+                izqav;
+                izqav;
+            fin sino inicio
+                izqav;
+                si junto-a-zumbador entonces inicio
+                    izqav;
+                fin sino inicio
+                    izqav;
+                    deja-zumbador;
+                fin;
+            fin;
+        fin;
+
+        si no junto-a-zumbador entonces inicio
+            izqav;
+            si junto-a-zumbador O frente-bloqueado entonces inicio
+                gira-u;
+                avizq;
+            fin sino inicio
+                avanza;
+                si junto-a-zumbador entonces inicio
+                    gira-u;
+                    mavanza(2);
+                    gira-izquierda;
+                fin sino inicio
+                    izqav;
+                    si junto-a-zumbador O frente-bloqueado entonces inicio
+                        gira-izquierda;
+                        mavanza(2);
+                        izqav;
+                    fin sino inicio
+                        avanza;
+                        si junto-a-zumbador entonces inicio
+                            gira-izquierda;
+                            mavanza(2);
+                            gira-izquierda;
+                            mavanza(2);
+                        fin sino inicio
+                            izqav;
+                            si junto-a-zumbador entonces inicio
+                                avizq;
+                                mavanza(2);
+                            fin sino inicio
+                                avizq;
+                                si junto-a-zumbador entonces inicio
+                                    mavanza(2);
+                                fin sino inicio
+                                    avanza;
+                                    si junto-a-zumbador entonces inicio
+                                        avanza;
+                                    fin sino inicio
+                                        avanza;
+                                        deja-zumbador;
+                                    fin;
+                                fin;
+                            fin;
+                        fin;
+                    fin;
+                fin;
+            fin;
+        fin;
+        si frente-libre entonces inicio
+            avanza;
+            valida;
+        fin sino inicio
+            gira-u;
+            mientras frente-libre hacer avanza;
+            gira-izquierda;
+            si frente-libre entonces inicio
+                avizq;
+                avanza;               
+                valida;
+            fin sino inicio
+                apagate;
+            fin;
+        fin;
+    fin;
+
+    inicia-ejecucion
+        si frente-bloqueado entonces apagate;
+        avanza;
+        gira-derecha;
+        avanza;
+        gira-izquierda;
+        valida;
+        apagate;
+    termina-ejecucion
+finalizar-programa

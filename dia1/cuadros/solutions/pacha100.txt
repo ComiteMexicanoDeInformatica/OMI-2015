@@ -1,0 +1,187 @@
+iniciar-programa
+    define-nueva-instruccion gira-derecha como inicio
+        gira-izquierda;
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+
+    define-nueva-instruccion gira-u como inicio
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+
+
+    define-nueva-instruccion mavanza(n) como inicio
+        repetir n veces avanza;
+    fin;
+
+    define-nueva-instruccion izqav como inicio
+        gira-izquierda;
+        avanza;
+    fin;
+
+    define-nueva-instruccion avizq como inicio
+        avanza;
+        gira-izquierda;
+    fin;
+	
+    define-nueva-instruccion cuadro2 como inicio
+    	izqav;
+        si junto-a-zumbador O frente-bloqueado entonces inicio
+        	gira-u;
+        	avizq;
+        fin sino inicio
+        		avanza;
+	        	si junto-a-zumbador entonces inicio
+    	    	gira-u;
+        		mavanza(2);
+        		gira-izquierda;
+        		fin sino inicio
+        			izqav;
+			        si junto-a-zumbador O frente-bloqueado entonces inicio
+        				gira-izquierda;
+        				mavanza(2);
+        				izqav;
+        			fin sino inicio
+        				avanza;
+        				si junto-a-zumbador entonces inicio
+        					gira-izquierda;
+        					mavanza(2);
+        					gira-izquierda;
+                            mavanza(2);
+                            fin sino inicio
+                            izqav;
+                            si junto-a-zumbador entonces inicio
+                              avizq;
+                              mavanza(2);
+        					fin sino inicio
+                            	avizq;
+                            	si junto-a-zumbador entonces inicio
+                            		mavanza(2);
+                            	fin sino inicio
+                            		avanza;
+        							si junto-a-zumbador entonces inicio
+        								si frente-libre entonces avanza;
+        							fin sino inicio
+        								si frente-libre entonces avanza;
+        								si no junto-a-zumbador entonces deja-zumbador;
+        							fin;
+        						fin;
+        					fin;
+        				fin;
+        			fin;
+        		fin;
+    	fin;
+    fin;
+
+    define-nueva-instruccion valida(n) como inicio
+        repetir n veces inicio
+          izqav;
+          si junto-a-zumbador entonces inicio
+              gira-u;
+              avizq;
+          fin sino inicio
+              izqav;
+              si junto-a-zumbador entonces inicio
+                  izqav;
+                  izqav;
+              fin sino inicio
+                  izqav;
+                  si junto-a-zumbador entonces inicio
+                      izqav;
+                  fin sino inicio
+                      izqav;
+                      si no junto-a-zumbador entonces deja-zumbador;
+                  fin;
+              fin;
+          fin;
+  
+          si no junto-a-zumbador entonces inicio
+              cuadro2;
+          fin;
+          si frente-libre entonces avanza;
+        fin;
+    fin;
+    
+    define-nueva-instruccion esimpar(n) como inicio
+    	si no si-es-cero(n) entonces inicio 
+        	
+          si si-es-cero(precede(n)) entonces inicio
+              deja-zumbador;
+          fin sino inicio
+              esimpar(precede(precede(n)));
+          fin;
+       fin;
+        
+    fin;
+    
+    define-nueva-instruccion final(n) como inicio
+		
+        si si-es-cero(precede(precede(n))) entonces inicio
+        	avanza;
+            deja-zumbador;
+            apagate;
+        fin;
+        esimpar(n);
+        si no junto-a-zumbador entonces inicio 
+			izqav;
+        	si junto-a-zumbador entonces inicio 
+        		coge-zumbador;
+            	izqav;
+            	deja-zumbador;
+            	izqav;
+            	izqav;
+        	fin sino inicio
+        		gira-u;
+            	avizq;
+        	fin;
+        fin sino inicio
+        	coge-zumbador;
+        fin;
+
+        valida(n);
+        apagate;
+    fin;
+    
+    
+    define-nueva-instruccion recorre(n) como inicio
+    	si si-es-cero(n) entonces apagate;
+        si si-es-cero(precede(n)) entonces sal-de-instruccion;        
+        valida(precede(n));
+        gira-u;
+        avanza;
+        gira-izquierda;
+        valida(1);
+        gira-izquierda;
+        cuadro2;
+        gira-derecha;
+        valida(precede(precede(n)));
+        gira-u;
+        mavanza(precede(precede(n)));
+        gira-izquierda;
+        mavanza(precede(precede(n)));
+        gira-u;
+        recorre(precede(n));      
+    fin;
+    
+    define-nueva-instruccion cuenta(n)  como inicio
+    	si frente-libre entonces inicio
+        	avanza;
+            cuenta(sucede(n));
+        fin sino inicio
+        	gira-u;
+            avanza;
+            izqav;
+            recorre(n);
+            final(n);
+        fin;
+    fin;
+
+    inicia-ejecucion
+        si frente-bloqueado entonces apagate;
+        cuenta(0);
+        
+        
+        apagate;
+    termina-ejecucion
+finalizar-programa

@@ -1,0 +1,145 @@
+iniciar-programa
+    define-nueva-instruccion gira-derecha como inicio
+        gira-izquierda;
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+
+    define-nueva-instruccion gira-u como inicio
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+
+
+    define-nueva-instruccion mavanza(n) como inicio
+        repetir n veces avanza;
+    fin;
+
+    define-nueva-instruccion mirror(n) como inicio
+        si no si-es-cero(n) entonces inicio
+            repetir n veces avanza;
+            gira-izquierda;
+            repetir n veces avanza;
+            deja-zumbador;
+            gira-u;
+            repetir n veces avanza;
+            gira-derecha;
+            repetir n veces avanza;
+            gira-u
+        fin;
+    fin;
+
+    define-nueva-instruccion coso(n) como inicio
+        si no si-es-cero(n) entonces inicio
+            avanza;
+            gira-izquierda;
+            avanza;
+            si junto-a-zumbador entonces inicio
+                gira-u;
+                avanza;
+                gira-izquierda;
+            fin sino inicio
+                gira-izquierda;
+                avanza;
+                si junto-a-zumbador entonces inicio
+                    gira-izquierda;
+                    avanza;
+                    gira-izquierda;
+                    avanza;
+                fin sino inicio
+                    gira-izquierda;
+                    avanza;
+                    si junto-a-zumbador entonces inicio
+                        gira-izquierda;
+                        avanza;
+                    fin sino inicio
+                        gira-izquierda;
+                        avanza;
+                        deja-zumbador;
+                        mirror(precede(n));
+                    fin;
+                fin;
+            fin;
+            si no junto-a-zumbador entonces inicio
+                gira-izquierda;
+                avanza;
+                si frente-bloqueado entonces inicio
+                    gira-u;
+                    avanza;
+                    gira-izquierda;
+                fin sino inicio
+                    avanza;
+                si junto-a-zumbador entonces inicio
+                    gira-u;
+                    mavanza(2);
+                    gira-izquierda;
+                fin sino inicio
+                    gira-izquierda;
+                    avanza;
+                    si junto-a-zumbador o frente-bloqueado entonces inicio
+                        gira-izquierda;
+                        mavanza(2);
+                        gira-izquierda;
+                        avanza;
+                    fin sino inicio
+                        avanza;
+                        si junto-a-zumbador entonces inicio
+                            gira-izquierda;
+                            mavanza(2);
+                            gira-izquierda;
+                            mavanza(2);
+                        fin sino inicio
+                            gira-izquierda;
+                            avanza;
+                            si junto-a-zumbador entonces inicio
+                                avanza;
+                                gira-izquierda;
+                                mavanza(2);
+                            fin sino inicio
+                                avanza;
+                                gira-izquierda;
+                                si junto-a-zumbador entonces inicio
+                                    mavanza(2);
+                                fin sino inicio
+                                    avanza;
+                                    si junto-a-zumbador entonces inicio
+                                        avanza;
+                                    fin sino inicio
+                                        avanza;
+                                        deja-zumbador;
+                                        mirror(precede(n));
+                                    fin;
+                                fin;
+                            fin;
+                        fin;
+                    fin;
+                fin;
+                fin;
+            fin;
+            coso(precede(n));
+        fin;
+    fin;
+
+    define-nueva-instruccion recorre(n) como inicio
+        si frente-bloqueado entonces apagate;
+        avanza;
+        gira-izquierda;
+        coso(n);
+        gira-u;
+        mientras frente-libre hacer avanza;
+        gira-izquierda;
+        recorre(sucede(n));
+
+
+    fin;
+
+
+
+
+
+    inicia-ejecucion
+        gira-derecha;
+        recorre(1);
+        apagate;
+    termina-ejecucion
+finalizar-programa

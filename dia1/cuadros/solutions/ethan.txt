@@ -1,0 +1,97 @@
+class program {
+
+void Girar(n) {
+    iterate(n)
+        turnleft();
+}
+
+void MoveDiagonal() {
+    move(); turnleft();
+    move(); Girar(3);
+}
+
+void ColocaUno() {
+    if (notNextToABeeper)
+        putbeeper();
+}
+
+void Salteado1(n) {
+    ColocaUno();
+    if (!iszero(n)) {
+        move();
+        Salteado2(
+            pred(n));
+    }
+}
+
+void Salteado2(n) {
+    ColocaUno();
+    if (!iszero(n)) {
+        move();
+        Salteado3(
+            pred(n));
+    }
+}
+
+void Salteado3(n) {
+    if (!iszero(n)) {
+        move();
+        Salteado1(
+            pred(n));
+    }
+}
+
+void ChecaEsquina() {
+    turnleft(); move();
+    if (nextToABeeper) {
+        Girar(2); move();
+        turnleft();
+        pickbeeper();
+    } else {
+        Girar(2); move();   
+        turnleft();
+    }
+}
+
+void Blanco(n) {
+    if (!iszero(n)) {
+        putbeeper();
+        MoveDiagonal();
+        if (!iszero(pred(n)))
+            Negro(pred(pred(n)));
+    }
+}
+
+void Negro(n) {
+    if (iszero(n)) {
+        putbeeper();
+    } else {
+        iterate(4) {
+            Salteado1(n);
+            turnleft();
+        }
+        ChecaEsquina();
+        MoveDiagonal();
+        if (!iszero(pred(n)) &&
+            !iszero(pred(pred(n))))
+            Blanco(pred(pred(n)));
+    }
+}
+
+void CuentaTamano(n) {
+    if (frontIsClear) {
+        move();
+        CuentaTamano(
+            succ(n));
+    } else {
+        Girar(2);
+        Blanco(n);
+    }
+}
+
+program() {
+    CuentaTamano(0);
+    turnoff();
+}
+
+}

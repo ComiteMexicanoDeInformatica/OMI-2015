@@ -1,0 +1,84 @@
+<ejecucion>
+	<condiciones instruccionesMaximasAEjecutar="10000000" longitudStack="65000"></condiciones>
+	<validadadores>
+		<validador tipo="post"><![CDATA[
+			function validate(world, callbacks) {
+				var a, b, c, d, n;
+				for (a = world.i; !(world.walls(a, world.j) & 8); --a) {}
+				for (b = world.i; !(world.walls(b, world.j) & 2); ++b) {}
+				for (c = world.j; !(world.walls(world.i, c) & 1); --c) {}
+				for (d = world.j; !(world.walls(world.i, d) & 4); ++d) {}
+
+				var beepers = []
+				var total_beepers = 0;
+				for (var i = a; i <= b; ++i) {
+					beepers[i - a] = []
+					for (var j = c; j <= d; ++j) {
+						beepers[i - a][j - c] = world.buzzers(i, j);
+						total_beepers += beepers[i - a][j - c];
+					}
+				}
+
+				n = b - a + 1;
+				var left = [], down = [];
+				for (var i = 0; i < n; ++i) {
+					left[i] = [], down[i] = [];
+					for (var j = 0; j < n; ++j)
+						left[i][j] = 0, down[i][j] = 0;
+				}
+
+				var percentage = (total_beepers * 100) / (n * n);
+				percentage = Math.round(percentage * 100) / 100;
+
+				for (var i = 0; i < n; ++i) {
+					if (!beepers[i][0]) left[i][0] = 1;
+					if (!beepers[0][i]) down[0][i] = 1;
+					for (var j = 1; j < n; ++j) {
+						if (beepers[i][j]) left[i][j] = 0;
+						else left[i][j] = left[i][j - 1] + 1;
+						if (beepers[j][i]) down[j][i] = 0;
+						else down[j][i] = down[j - 1][i] + 1;
+					}
+				}
+
+				var impossibru = false;
+				for (var i = 0; i < n && !impossibru; ++i) {
+					for (var j = 0; j < n && !impossibru; ++j) {
+						if (beepers[i][j]) continue;
+						for (var k = 1; k < n && !impossibru; ++k) {
+						  if (i - k < 0 || j - k < 0) break;
+						  if (beepers[i - k][j] || beepers[i][j - k]) break;
+						  if (left[i - k][j] > k && down[i][j - k] > k)
+						    impossibru = true;
+						}
+					}
+				}
+
+				if (!impossibru) {
+					callbacks.info('Zumbadores usados: ' + total_beepers);
+					callbacks.info('Porcentaje: ' + percentage + '%');
+					return true;
+				} else {
+					return false;
+				}
+			}
+		]]></validador>
+	</validadadores>
+	<mundos>
+		<mundo nombre="mundo_0" ancho="100" alto="100">
+			<pared x1="5" y1="0" y2="1"></pared>
+			<pared x1="5" y1="1" y2="2"></pared>
+			<pared x1="5" y1="2" y2="3"></pared>
+			<pared x1="5" y1="3" y2="4"></pared>
+			<pared x1="0" y1="5" x2="1"></pared>
+			<pared x1="1" y1="5" x2="2"></pared>
+			<pared x1="2" y1="5" x2="3"></pared>
+			<pared x1="3" y1="5" x2="4"></pared>
+			<pared x1="4" y1="5" x2="5"></pared>
+			<pared x1="5" y1="4" y2="5"></pared>
+		</mundo>
+	</mundos>
+	<programas tipoEjecucion="CONTINUA" intruccionesCambioContexto="1" milisegundosParaPasoAutomatico="0">
+		<programa nombre="p1" ruta="{$2$}" mundoDeEjecucion="mundo_0" xKarel="1" yKarel="1" direccionKarel="NORTE" mochilaKarel="INFINITO"></programa>
+	</programas>
+</ejecucion>
