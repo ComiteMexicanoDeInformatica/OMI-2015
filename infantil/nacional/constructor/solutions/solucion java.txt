@@ -1,0 +1,38 @@
+class program {
+    void construir(){
+        while(nextToABeeper()){
+            pickbeeper();
+        }
+        while(anyBeepersInBeeperBag()){
+            putbeeper();
+            if(frontIsClear()){
+                move();
+            }
+        }
+        iterate (2){
+            turnleft();
+        }
+        while(frontIsClear()){
+            move();
+        }
+    }
+    program() {
+		turnleft();
+		turnleft();
+		turnleft();
+		while(notNextToABeeper)
+			move();
+		turnleft();
+        while(nextToABeeper()){
+            construir();
+            turnleft();
+            if(frontIsClear()){
+                move();
+            }else{
+                turnoff();
+            }
+            turnleft();
+        }
+        turnoff();
+    }
+}

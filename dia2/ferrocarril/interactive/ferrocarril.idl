@@ -1,0 +1,9 @@
+interface Main {
+  int EncontrarVagon(int v);
+  int VagonEnPosicion(int p);
+  int IntercambiarVagones(int a, int b);
+};
+
+interface ferrocarril {
+  void AcomodarFerrocarril(int n);
+};

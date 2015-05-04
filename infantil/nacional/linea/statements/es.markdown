@@ -1,0 +1,54 @@
+# Historia
+
+Karel debe dibujar una línea recta en el piso con zumbadores.  Para dibujarla utilizará los zumbadores que lleva en su mochila.
+
+Desde su posición y orientación de inicio, Karel debe dibujar una línea recta con montones de un zumbador.  Karel debe continuar dibujando mientras tenga zumbadores en su mochila o hasta topar con una pared.
+
+# Problema
+
+Escribe un programa que ayude a Karel a dibujar una línea recta con montones de un zumbador utilizando los zumbadores que Karel lleva en la mochila.
+
+Tu programa deberá seguir dibujando mientras Karel tenga zumbadores en la mochila o hasta que Karel tope con una pared.
+
+# Consideraciones
+* Karel inicia en una posición desconocida y con orientación desconocida.
+* Karel inicia con un número desconocido de zumbadores en su mochila.
+* Para obtener puntos debes hacer que ***Karel continúe dibujando hasta quedarse sin zumbadores o hasta topar con una pared***.
+* No importan la posición ni la orientación final de Karel para la calificación.
+
+# Ejemplos
+
+### Ejemplo 1
+
+**Entrada**
+
+![Entrada ejemplo 1][1]
+
+Karel inicia en una posición desconocida del mundo.  En este caso Karel lleva **3 zumbadores en la mochila**.
+
+**Salida**
+
+![Salida ejemplo 1][2]
+
+A partir de su posición de inicio Karel dibuja una línea con montones de un zumbador hasta terminarse los **3 zumbadores de su mochila**.  Al quedarse sin zumbadores, Karel se apaga y el programa debe terminar.
+
+----------
+
+### Ejemplo 2
+
+**Entrada**
+
+![Entrada ejemplo 2][3]
+
+De nuevo Karel inicia en una posición desconocida, esta vez con otra orientación.  En este caso Karel lleva **5 zumbadores en la mochila**.
+
+**Salida**
+
+![Salida ejemplo 2][4]
+
+A partir de su posición de inicio Karel dibuja una línea con montones de un zumbador. En este ejemplo Karel **topa con una pared antes de terminarse los zumbadores**. Cómo no puede seguir avanzando, Karel se apaga al llegar a la pared.
+
+  [1]: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAAA1CAIAAADH3D72AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIQSURBVHhe7dnBaoVAFATRfHr+/EVILRI771IRRxjowyytWdi48uNVO+t+e+t+ezvv9/lPZAKBRiYQaGQCgUYmEGhkoftNCDQygUAjC91vQqCRCQQaWeh+EwKNTCDQyEL3mxBoZAKBRha634RAIxMINLLQ/SYEGplAoJGF7jch0MgEAo0sdL8JgUYmEGhkoftNCDQygUAjC91vQqCRCQQaWeh+EwKNTCDQyEL3mxBoZAKBRha634RAIxMINLJwZT8efePjfOUvXCEQCAQamUCgkQkEGllYst8wIVcIBAKBRiYQaGQCgUYWxo/lku/95q+w7rJwv074gLX7dcLVlu93nFrnyts9zWNOLfLQfsepFZ7b7zh1u0f3O07dq/vt7dH96nbP7VcrPLRfLXL/qz0td5xaZ/l+tdT5BfO7YsSjb8zjcYVAIBBoZAKBRiYQaGRh4X5/4gqBQCDQyAQCjUwg0MjCqv3e4QqBQCDQyAQCjUwg0MjCkv0GXCEQCAQamUCgkQkEGlm4st9PZAKBRiYQaGQCgUYmEGhkoftNCDQygUAjC91vQqCRCQQaWeh+EwKNTCDQyEL3mxBoZAKBRha634RAIxMINLLQ/SYEGplAoJGF7jch0MgEAo0sdL8JgUYmEGhkoftNCDQygUAjC91vQqCRCQQaWeh+EwKNTCDQyMJ5v9pL99tb99tb99vZ6/UFPS0L+oaOG70AAAAASUVORK5CYII=
+  [2]: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARUAAABHCAIAAACmvUT9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASPSURBVHhe7d09ctpAGMZxkbNgFx5OgE9g3KRymw5K3LjzjOMZd2lwaXVpXbkJnCCcgEkRuIuzH69AQh+IVysMzv83mbFWaFd4tY92RcKk8/7+HgFQ+SI/AeyP/AB65AfQIz+AHvkB9MgPoEd+AD3yA+iRH0CP/AB65AfQIz+AHv9+9Ig8Pj7KVj0PDw+ytQstpwVsmfkH0CM/gB75AfTID6BHfgA98gPokR9Aj/wAeuQH0CM/gB75OZBOQsr4FMjPIaRj41NkSBmnjPx8GIkRQTpl5OfjSYwI0v4eUmRXSlmPlh2vQH6OyPeElNFY2zclvv9T7BhmAy5NQ+tr2F5Hlsw/q+fLzmgmhZwmr5aajTqXzyspVMm3b/doTilyDbYdnprBcGs6S8rQaq8LVeu37vj3+8uVFHKqXw3OjP6z15vlIU8ZgImQJ+VKEiOC1EBLnXfqzz+zkQ3P73FXyidHYhQuSNWvNnGKLae1cZJd+XFrm2e7PrJkgZVe8Li1kye7il8tWZuZVZs3epM91mZv5aLMHDaIptnwrKsavrZ5D5ejkX0fvlyz8baURcWnyJByJfkNsiMivyeUo23ZVK34k1e4s4k680/8Gv20F3Y6nN/+yI45c/u/7U3dZV9OFoOtEZl6ddq7PcuP19loEA/dAcuLRSw7zXg3qXA7TZOlz0T2MFM5u2zbNGjebRQ/SeV5HN2bXebYmo1n2KPDkUbLyXG1gyRbSUUpBHWKLZcJG6E6+enfXLs7/NlF35U3Zm9xf3LnR3D+sWf1dxENv/pdV1+H0eLv1mhNVe+O74duX7T69TqXWnbn/PVXwRhfPF2aaE5yEbh6cSlxm+aMa/2LM/ezVuPHwo8tQ8olmty//08BO6xOfnrnJU8XNiAVln/mybh14Zv/WUrBK68eD9y03ukMkklpy7xn5pOX8fjnJLr9lknQZsWYrpv+FXY2js8vVIQafX7QPe/JVqFMZDJh8sqryxLMKfxsIJnWui5B65WhCY/7LM4xC7hCOxs/FhJzppcj1ig/do20fiSyN/7sYsrmI37zr5qlWn4eS1VfPT/JbNC9vukntWybO57ybYL6sTx5mZAmZ7FPQvZn1p6NezKKA5FGy8lx9WLjbwNSQG2h+qxZfszzhn0Md1fbflSwdTtPvTpYTJb5v6HZHPAtukmmC/MgNY2kTTOZ5GttkQTZLFzduS3r6WI6ya0Y9288PHNm2cpy78mSciUfG0PK2EfAbuPf7xSoOYjV0n2+17nqXCzTYEvX9AhbVlyosL8B+SlwgPwEjw3y8n0cvCPJT7G2I1QTV6eJrWvYRl+Sn0PYN401v8JQ/0ssn/V/SahuLd3r+WFe/51XnKXh5wcIyX/5x5AyAmlvjiA/H88sATwpI6hW+5X8fBgJDbFpU9u9S34OIR0SnxlDymjAPMOsya6Usj4uO16B/ByIhIbYfC7kB9AjP4Ae+QH0yA+gR34APfID6JEfQI/8AHrkB9AjP4Ae3/8B9Jh/AD3yA+iRH0CP/AB65AfQIz+AHvkB9MgPoEd+AD3yA+iRH0Ariv4BBQOssAvKRVwAAAAASUVORK5CYII=
+  [3]: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJEAAAA3CAIAAACD/z+HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFGSURBVHhe7dtRDoIwEEVRcOOFlWMTCkFBJHQ65o33/EiIQfQ6ghH7aZo6SHmUW+igmR6a6Xk5no3jWJauSSmVpW/Y8lbllpkzPTTTQzM9NNNDMz0000MzPTTTE7DZMAxlKahozeZgsbPx2aiHZnpopodmVdJGWbXo+7Kwd3j/62jWxEmwetGuB+mXV+uHz2sN1mgXmDNjTSdsRjNLDsEympnxCZZxPLNxI9jtHWTODLhN2IxmtZyDZTSr4h8so5kemlX5yQkczWr5Z6OZAedsfD8zsz8fabQLzJkZtzdJtP/FrFeCfLokxHaf91vbTtt5xeuvydujMGfGHKaNZvZaZ6NZE02z0axKPiatyqrFSbbD+19HMz0000MzPTTTQzM9NNMTrRn/ZZIUO1jGZ6MemumhmZ5ov1P/A+ZMD8300EwPzdR03RMV63JTA0b4cgAAAABJRU5ErkJggg==
+  [4]: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAA4CAIAAABR14uuAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARdSURBVHhe7d0/cuIwFAZwe88CKRhOACeANFulTQclNOkyQzJDtw2UuEtLlSZwgnACJkXgLuyT9Gz8F9sCG9v6fpPZWLItnOR9SGazrH06nSwAyOkPfwaAPJAcAB1IDoAOJAdAR+AVgvf3d97KZjab8VYajOxX3MhQGsw5ADqQHAAdSA6ADiQHQAeSA6ADyQHQgeQA6EByAHQ0MDlvb2+8BVCYpiVHxQbhgaJhtQagA8kB0IHkAOgwIjkzH+5y2TZvRMUeXzW2i9tQFqPnnJrWG2dF4i7ZyVtQiqa9g4dXQKlfl1dpdfkGpGYDb8ZSJkPnHFWEVGnVLzYxs0jchmowMTnVL0LOisRdGfAJV+PhkhyXfXu85UbENXsTbcd2f3nkxiXR8UWPzkOy5As2LjmxhZFeLrpyjSzrVuD2nVx1Aa3J92k14EbE5b03R3XfXj8dCnlIs5ITLYlQpdJm6ENbaOQL1JGE2xnQLQ3uatJsxyI235MWt2/LoOTEVmZxJXh5ZM6KxF0ZqDEJt+9LrmSWYjUk8HLKv7yRKyWFu+L3JqzEaI2mjD+5Rzj3XlyC0WFDaxOMjXcqUWfTNfTHY3Edqp1xcMGU5Fwze9wc/WR4KwPOisRdrmhP6Zy19SGubDPaTf8Fq42e8qfdjdh5Oiz2w1At+vZuutN2tFK346EzkgccOnuHO6nSKQ+yk4ZMvPcRh9HJwUXaeUC6WsuZ88k7x3qlLjo24+DMiOTUMTbiByhxOwEfdDUeLrfe06N8Vm93erJ9tv10eosXVbvR25vj794a/VVdg78ja/8bqlPf6a3J60j2Wcev9Y7PEp279VdMde/nfQrlIlL8g5XMh9ykR/T0Om35OdPgZ8a9QgA31X1IuIsQ0bjg8LNzK1bGbvdz4IaSfLozlMsp2x66E1HIrktzyGoy+VhY0+dAds7rQ/+5/i8hdfAzI5JTkfsCJeMTPP8E0yYoPuhqPNzttB66vBUrEJZAjJTk03nBJcXe/btTWUtmx1sHUmzk62wSLddipQ5+ZsqcU8fwKFzaccUd21kVtCLybn3Ek31w6SSS4XyqvbQwi85dvtOPyznPAK3Hp557lhgz5T5eZKfn8B0WxdN9FHHHIz4H5RzcoNVa1cKjcDsDlR+FuyptsBI32vJyxYsBoadw397hfnGI/o3L+YBn68mdIuiGaWPxmDSBRM8K4eyIFAxe5JYw72wWkfVh3sGN+701f9VV7Uv3Lv7uGlYVRTDuFYIql4SYgyRu38ndL6AWmvZ/GXjvQOB/K4LoaNlnnuxXXsR3I9cbKqDiy2Toq9J1qTFKDhHTEFJRMYYmh9SuFFV+CLfhrsxNDqlpEXKAglcfakLRjEgO3Vd4uMt1od5ij68UlR+Fu6AsRs85ANqQHAAdSA6ADiQHQAeSA6ADyQHQ0bTkqF9XUX8CFKeBcw5iAyXAag1AB5IDoAPJAdDRtH8TClAOzDkAOpAcAB1IDoAOJAcgP8v6D1VBmNKJTJqXAAAAAElFTkSuQmCC
