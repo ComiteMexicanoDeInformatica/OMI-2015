@@ -5,12 +5,10 @@ El plan de Karel es seguir la pared que tiene a la izquierda hasta encontrar la 
 
 
 
-<br>
 # Problema
 
 Escribe un programa que le ayude a Karel a encontrar la puerta del cuarto de su amigo.  Karel debe detenerse justo frente de la puerta del cuarto de su amigo.
 
-<br>
 # Consideraciones
 
 * Karel inicia en algún lugar de la casa con orientación desconocida.
@@ -19,8 +17,6 @@ Escribe un programa que le ayude a Karel a encontrar la puerta del cuarto de su 
 * La pared siempre tendrá una puerta.
 * Para obtener los puntos Karel debe apagarse justo en frente de la puerta del cuarto de su amigo. 
 * No importa la orientación final del Karel, sólo su posición.
-
-<br>
 
 # Ejemplo
 
